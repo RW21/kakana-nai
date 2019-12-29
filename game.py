@@ -3,7 +3,7 @@ import random
 
 class Game:
     def __init__(self, words):
-        self.words: list = words
+        self.words: list = list(set(words))
         random.shuffle(self.words)
         self.current_player = 0
         self.players = []

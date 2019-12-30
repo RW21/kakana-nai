@@ -8,7 +8,6 @@ class Game:
         self.current_player = 0
         self.players = []
         self.round_count = 0
-        self.history = []
 
         self.initiate_players()
 
@@ -26,7 +25,7 @@ class Game:
                 score = {i: i.points for i in self.players}
                 print(f'Score: {score}')
 
-                word = self.words.pop()
+                word = [self.words.pop() for i in range(3)]
 
                 print(f'Round {self.round_count}, {self.players[self.current_player]} reads "{word}"')
 
@@ -35,9 +34,9 @@ class Game:
                 if len(self.words) == 0:
                     raise KeyboardInterrupt
 
-                if keyboard != 'next':
+                if keyboard != '':
                     self.players[int(keyboard)].points += 1
-                    self.history.append((self.current_player, word))
+                    self.players[self.current_player].points += 1
                     self.current_player = int(keyboard)
                     self.round_count += 1
 
